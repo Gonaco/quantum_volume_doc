@@ -1,0 +1,170 @@
+% Created 2018-07-12 Thu 09:25
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{parskip}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\author{Daniel Moreno Manzano}
+\date{\today}
+\title{Quantum Volume}
+\hypersetup{
+ pdfauthor={Daniel Moreno Manzano},
+ pdftitle={Quantum Volume},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.1.1 (Org mode 9.0.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+\label{sec:org33cd2bb}
+
+Given the different hardware implementations (superconducting, ion-trap, spin qubits, \ldots{}) it is often difficult to benchmark the usefulness or power of quantum systems, which is why a \textbf{hardware-independent measure} is required.
+
+To quantify a quantum computer's power \(\to\) \emph{\textbf{"can this device run a given algorithm?"}}
+
+\subsection{Hardware parameters}
+\label{sec:org0063b64}
+
+To define a suitable metric, we first note that a quantum computer's performance depends on:
+
+\begin{description}
+\item[{\(\textbf{N}\)}] number of physical qubits
+\item[{Quantum chip topology}] connectivity between qubits
+\item[{Maximum number of sequencial gates with correctable errors}] number of gates that can be applied before errors or decoherence mask the result
+\item[{Gate set}] Available hardware gate set
+\item[{Maximum number of parallel operations}] Number of operations that can be run in parallel
+\end{description}
+
+\subsection{Definitions and metrics}
+\label{sec:org359b8b0}
+
+\begin{description}
+\item[{Model algorithm}] performing a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits.
+\item[{Effective error rate \(\epsilon_{eff}\)}] how well a device can implement arbitrary pairwise interactions between qubits. Error rate per two-qubit gate averaged over many realizations of such depth-one circuits. Therefore, it depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. It encapsulates errors of both single- and two-qubit gates.
+\end{description}
+The equivalent per-gate error rate that would lead to the same overall error rate. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+
+\begin{description}
+\item[{Achievable circuit depth \(d(N) \simeq \frac{1}{N \epsilon_{eff}}\)}] \emph{Note that the possibility that several consecutive errors could act as the correction of that error is not take into account}.
+\item[{\(\textbf{n}\)}] Number of active qubits.
+\item[{Quantum Volume \(\tilde{V}_Q = min (N, d(N))^2\)}] quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
+
+$$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+\item[{\((u_j, v_j)\)}] qubit pairs that interact
+
+\item[{\(D_0\)}] distance between \(u\) and \(v\) for a given connectivity graph
+
+\item[{\(\sum_j D(u_j,v_j)\)}] Total distance
+
+\item[{\(\xi_{u,v}\)}] random variable \(~N(0,1/n)\)
+\item[{\(D\)}] Distance Function
+\end{description}
+
+$$D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2$$
+
+\begin{description}
+\item[{\(r\)}] lowest computed depth
+\end{description}
+\subsection{Heuristic routing algorithm}
+\label{sec:orgfe2a898}
+
+Since the algorithm is randomized, we repeat \(D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2\) and choose the lowest computed depth, \(r\).
+Averaging r over many instances of the model algorithm gives the effective error rate as
+
+$$\epsilon_{eff} = \epsilon (\bar{r} + 1)$$
+
+where we assume that all SWAP gates and the needed \(SU (4)\) interactions all can be done with constant error \(\epsilon\).
+
+\emph{Note that the algorithm is random}.
+
+\section{Thoughts}
+\label{sec:org215648b}
+
+\subsection{Runnability}
+\label{sec:org901ca49}
+
+\emph{"Can this device run a given algorithm?"}
+
+$$V_Q > V_Q^a$$
+
+It can be understood as if a cube fits in another cube.
+
+\subsubsection{Quantum Volume of a device}
+\label{sec:orgfa18713}
+
+Maximum Quantum Volume that a device could run
+
+$$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+\subsubsection{Quantum Volume of an algorithm}
+\label{sec:orge82ff97}
+
+$$V_Q^a = \min \left[ n,d \right]^2$$
+
+\subsubsection{Problem}
+\label{sec:org55ba808}
+
+It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
+
+\subsection{Depict \(\epsilon_{eff}(n)\)}
+\label{sec:orge5be852}
+
+\emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
+
+\subsubsection{Bounds}
+\label{sec:org77618f7}
+
+With no intelligent compiler/mapping:
+
+$$\epsilon_{eff} > \epsilon$$
+
+\subsubsection{Averaging \(\epsilon_{eff}\)}
+\label{sec:orgf0c1810}
+
+With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
+
+\subsubsection{Finding the real \(\epsilon_{eff} (n)\)}
+\label{sec:org0d7e984}
+
+\emph{Is not this thing kind of the error model?}
+
+\subsection{Near future}
+\label{sec:org089a693}
+
+\sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
+\emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
+Following that reasoning, with current devices of \(\epsilon_{eff} > 10^{-3}\), the maximum \(N\) will be
+
+$$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
+
+
+
+\section{Probability of success relation with Quantum Volume}
+\label{sec:org5472ffd}
+
+\emph{How Quantum Volume is related with Probability of success?}
+
+\emph{How to calculate \(\epsilon_{eff}\) with the methods of Probability of success?}
+\end{document}
