@@ -32,7 +32,7 @@ Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Mol
 
 The Quantum Volume metric first considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
-- $\textbf{N}$. The number of physical qubits
+- $N$. The number of physical qubits
 - Quantum chip topology. The connectivity between qubits
 - Maximum number of sequential gates with correctable errors. The number of gates that can be applied before errors or decoherence mask the result
 - Gate set. Available hardware gate set
@@ -40,15 +40,24 @@ The Quantum Volume metric first considers that a quantum computer's performance 
 
 ** Definitions and metrics
 
-    - Model algorithm :: performing a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits.
-    - Effective error rate $\epsilon_{eff}$ :: how well a device can implement arbitrary pairwise interactions between qubits. Error rate per two-qubit gate averaged over many realizations of such depth-one circuits. Therefore, it depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. It encapsulates errors of both single- and two-qubit gates.
-The equivalent per-gate error rate that would lead to the same overall error rate. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
-# /Note that they permit the *scheduling* to occur *off-line* in this paper/.
-    - Achievable circuit depth $d(N) \simeq \frac{1}{N \epsilon_{eff}}$ :: /Note that the possibility that several consecutive errors could act as the correction of that error is not take into account/.
-    - $\textbf{n}$ :: Number of active qubits.
-    - Quantum Volume $\tilde{V}_Q = min (N, d(N))^2$ :: quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
+In this section we extract some definitions from cite:Bishop_2017,Moll_2018. 
+They are required to understand the Quantum Volume, described at the end.
 
-	$$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+- Model algorithm. :: It is considered as the circuit unit for the Quantum Volume. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits. 
+
+- Effective error rate $\epsilon_{eff}$. :: How well a device can implement arbitrary pairwise interactions between qubits. It is the error rate per /model algorithm/ averaged over many realizations of such depth-one circuits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+
+- Achievable circuit depth $d(N) \simeq \frac{1}{N \epsilon_{eff}}$ :: Maximum circuit depth for which the results are correctable and useful in some device.
+
+# /Note that the possibility that several consecutive errors could act as the correction of that error is not take into account/.
+
+- $\textbf{n}$ :: Number of active qubits in a device of $N$ qubits.
+
+- Quantum Volume $\tilde{V}_Q = min (N, d(N))^2$ :: quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
+
+    $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+*** Heuristic routing algorithm parameters                       :noexport:
 
     - $(u_j, v_j)$ :: qubit pairs that interact
 
@@ -62,7 +71,8 @@ The equivalent per-gate error rate that would lead to the same overall error rat
     $$D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2$$
 
     - $r$ :: lowest computed depth
-** Heuristic routing algorithm
+
+** Heuristic routing algorithm                                    :noexport:
 
     Since the algorithm is randomized, we repeat $D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2$ and choose the lowest computed depth, $r$.
     Averaging r over many instances of the model algorithm gives the effective error rate as
