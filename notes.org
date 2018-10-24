@@ -9,14 +9,14 @@
 
 * Introduction
 
-Given the different hardware implementations in Quantum Computation (superconducting, ion-trap, spin qubits, ...), it is often difficult to benchmark the usefulness or power of quantum systems. 
+Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, ...), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A *hardware-independent measure* is required to depict whether a device is able to run a quantum circuit or not.
 Here is where the Quantum Volume metric appears on the scene.
 
 The aim of Quantum Volume is to quantify the computational power of quantum devices. 
-Consequently we will use it as a metric to measure the runnability of the quantum algorithms in the quantum devices -- /*"can this device run a given algorithm?"*/.
+Consequently we will use it as a metric to measure the runnability of the quantum algorithms and the quantum devices -- /*"can this algorithm be run in a given device?"*/.
 While the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
-Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and how the Quantum Volume is related to the probability of success.
+Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 
 * Literature review. A Quantum Volume definition
