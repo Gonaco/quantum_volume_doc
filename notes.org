@@ -18,23 +18,25 @@ Consequently we will use it as a metric to measure the runnability of the quantu
 While the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
+** Report structure                                               :noexport:
+
 This report outlines the general definition of Quantum Volume and our studies on the quantum algorithm runnability.
 The second section gives a brief overview of ...
 The third section examines ...
 
 * Literature review. A Quantum Volume definition
 
-
+Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018...
 
 ** Hardware parameters
 
-To define a suitable metric, we first note that a quantum computer's performance depends on:
+The Quantum Volume metric first considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
-- $\textbf{N}$ :: number of physical qubits
-- Quantum chip topology :: connectivity between qubits
-- Maximum number of sequencial gates with correctable errors :: number of gates that can be applied before errors or decoherence mask the result
-- Gate set :: Available hardware gate set
-- Maximum number of parallel operations :: Number of operations that can be run in parallel
+- $\textbf{N}$. The number of physical qubits
+- Quantum chip topology. The connectivity between qubits
+- Maximum number of sequential gates with correctable errors. The number of gates that can be applied before errors or decoherence mask the result
+- Gate set. Available hardware gate set
+- Maximum number of parallel operations. Number of operations that can be run in parallel
 
 ** Definitions and metrics
 
@@ -78,7 +80,7 @@ The equivalent per-gate error rate that would lead to the same overall error rat
     - They are not considering the different gates times
     - ...
 
-* Methods 
+* Methods?
 
 ** Runnability
 
@@ -186,3 +188,10 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 /How Quantum Volume is related with Probability of success?/
 
 /How to calculate $\epsilon_{eff}$ with the methods of Probability of success?/
+
+
+
+* BIB [delete this HEADER]
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
