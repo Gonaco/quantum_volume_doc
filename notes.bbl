@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bishop_2017}
+Andrew Cross Jay M.~Gambetta Lev S.~Bishop, Sergey~Bravyi and John Smolin.
+\newblock Quantum volume.
+\newblock 2017.
+
+\bibitem{Moll_2018}
+Nikolaj Moll, Panagiotis Barkoutsos, Lev~S Bishop, Jerry~M Chow, Andrew Cross,
+  Daniel~J Egger, Stefan Filipp, Andreas Fuhrer, Jay~M Gambetta, Marc Ganzhorn,
+  and et~al.
+\newblock Quantum optimization using variational algorithms on near-term
+  quantum devices.
+\newblock {\em Quantum Science and Technology}, 3(3):030503, Jun 2018.
+
+\end{thebibliography}
