@@ -30,7 +30,7 @@ Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Mol
 
 ** Hardware parameters
 
-The Quantum Volume metric first considers that a quantum computer's performance mainly depends on the next hardware specifications:
+The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
 - $N$. The number of physical qubits
 - Quantum chip topology. The connectivity between qubits
@@ -40,8 +40,8 @@ The Quantum Volume metric first considers that a quantum computer's performance 
 
 ** Definitions and metrics
 
-In this section we extract some definitions from cite:Bishop_2017,Moll_2018. 
-They are required to understand the Quantum Volume, described at the end.
+In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume. 
+
 
 - Model algorithm. :: It is considered as the circuit unit for the Quantum Volume. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits. 
 
@@ -55,7 +55,7 @@ They are required to understand the Quantum Volume, described at the end.
 
 - Quantum Volume $\tilde{V}_Q = min (N, d(N))^2$ :: quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
 
-    $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+    # $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
 *** Heuristic routing algorithm parameters                       :noexport:
 
@@ -90,15 +90,24 @@ They are required to understand the Quantum Volume, described at the end.
     - They are not considering the different gates times
     - ...
 
-* Methods?
+* Quantum Volume Evolution
+
+# # Intro of how we want to work with Quantum Volume.
+# First we will calculate the Quantum Volume of a circuit (before and after mapping. We will be able to see differences because out metric is not following the Quantum Volume $min$ convention)
+# +Then, without calculating any effective error rate, we will consider that the Quantum Volume of the device should be smaller than the Quantum Volume of the device.+
+# +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or effective error rate required to run a certain algorithm.+
 
 ** Runnability
 
-/"Can this device run a given algorithm?"/
+# /"Can this device run a given algorithm?"/
+
+Following the $$
+
+We define runnability as 
 
 $$V_Q > V_Q^a$$
 
-It can be understood as if a cube fits in another cube.
+One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 
 *** Quantum Volume of a device
 
@@ -193,7 +202,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 
-* Probability of success relation with Quantum Volume
+* TODO Probability of success relation with Quantum Volume
 
 /How Quantum Volume is related with Probability of success?/
 
