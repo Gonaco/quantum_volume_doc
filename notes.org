@@ -9,9 +9,17 @@
 
 * Introduction
 
-Given the different hardware implementations (superconducting, ion-trap, spin qubits, ...) it is often difficult to benchmark the usefulness or power of quantum systems, which is why a *hardware-independent measure* is required.
+Given the different hardware implementations in Quantum Computation (superconducting, ion-trap, spin qubits, ...), it is often difficult to benchmark the usefulness or power of quantum systems. 
+A *hardware-independent measure* is required to depict whether a device is able to run a quantum circuit or not.
+Here is where the Quantum Volume metric appears on the scene.
 
-To quantify a quantum computer's power $\to$ /*"can this device run a given algorithm?"*/
+The aim of Quantum Volume is to quantify the computational power of quantum devices. 
+Consequently we will use it as a metric to measure the runnability of the quantum algorithms in the quantum devices -- /*"can this device run a given algorithm?"*/.
+While the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
+Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and how the Quantum Volume is related to the probability of success.
+
+
+* Literature review. A Quantum Volume definition
 
 ** Hardware parameters
 
@@ -65,7 +73,58 @@ The equivalent per-gate error rate that would lead to the same overall error rat
     - They are not considering the different gates times
     - ...
 
-* Thoughts
+* Methods 
+
+** Runnability
+
+/"Can this device run a given algorithm?"/
+
+$$V_Q > V_Q^a$$
+
+It can be understood as if a cube fits in another cube.
+
+*** Quantum Volume of a device
+
+Maximum Quantum Volume that a device could run
+
+$$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+*** Quantum Volume of an algorithm
+
+$$V_Q^a = \min \left[ n,d \right]^2$$
+
+*** Problem
+
+It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
+
+** Depict $\epsilon_{eff}(n)$
+
+/How to depict a function of $\epsilon_{eff}$ based on experiments/simulations?/
+
+*** Bounds
+
+With no intelligent compiler/mapping:
+
+$$\epsilon_{eff} > \epsilon$$
+
+*** Averaging $\epsilon_{eff}$
+
+With several random circuits of just 1 cycle, check their fidelity and average. That would be the $\bar{\epsilon}_{eff}$.
+
+*** Finding the real $\epsilon_{eff} (n)$
+
+/Is not this thing kind of the error model?/
+
+** Near future
+
++Quantum Volume assumes that a square circuit ($d = \frac{1}{N \epsilon_{eff}} = N$) is the maximum a quantum device could get in term of errors.+
+/Maybe is not that but the initial maximum depth calculation formula that leads you to this result/
+Following that reasoning, with current devices of $\epsilon_{eff} > 10^{-3}$, the maximum $N$ will be
+
+$$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
+
+
+* Thoughts                                                         :noexport:
 
 ** Runnability
 
