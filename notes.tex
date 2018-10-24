@@ -1,4 +1,4 @@
-% Created 2018-10-24 Wed 15:00
+% Created 2018-10-24 Wed 15:39
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:orgda5981f}
+\label{sec:org46abb37}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -48,12 +48,17 @@ Consequently we will use it as a metric to measure the runnability of the quantu
 While the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
+This report outlines the general definition of Quantum Volume and our studies on the quantum algorithm runnability.
+The second section gives a brief overview of \ldots{}
+The third section examines \ldots{}
 
 \section{Literature review. A Quantum Volume definition}
-\label{sec:orge6efe89}
+\label{sec:org4338a3c}
+
+
 
 \subsection{Hardware parameters}
-\label{sec:org052a088}
+\label{sec:org68f04dc}
 
 To define a suitable metric, we first note that a quantum computer's performance depends on:
 
@@ -66,7 +71,7 @@ To define a suitable metric, we first note that a quantum computer's performance
 \end{description}
 
 \subsection{Definitions and metrics}
-\label{sec:org41b4154}
+\label{sec:org1f474b6}
 
 \begin{description}
 \item[{Model algorithm}] performing a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits.
@@ -97,7 +102,7 @@ $$D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2$$
 \item[{\(r\)}] lowest computed depth
 \end{description}
 \subsection{Heuristic routing algorithm}
-\label{sec:org54cff05}
+\label{sec:orgfe9a3d5}
 
 Since the algorithm is randomized, we repeat \(D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2\) and choose the lowest computed depth, \(r\).
 Averaging r over many instances of the model algorithm gives the effective error rate as
@@ -109,10 +114,10 @@ where we assume that all SWAP gates and the needed \(SU (4)\) interactions all c
 \emph{Note that the algorithm is random}.
 
 \section{Methods}
-\label{sec:orgcd33ecc}
+\label{sec:org5cb3bd3}
 
 \subsection{Runnability}
-\label{sec:orga20ad0a}
+\label{sec:orgad7f782}
 
 \emph{"Can this device run a given algorithm?"}
 
@@ -121,46 +126,46 @@ $$V_Q > V_Q^a$$
 It can be understood as if a cube fits in another cube.
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:org91dd8b6}
+\label{sec:org466accc}
 
 Maximum Quantum Volume that a device could run
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:orgb8c7a37}
+\label{sec:orgb191253}
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
 \subsubsection{Problem}
-\label{sec:org7910329}
+\label{sec:orgc54b24c}
 
 It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
 
 \subsection{Depict \(\epsilon_{eff}(n)\)}
-\label{sec:org0e5f2e0}
+\label{sec:orgb37e439}
 
 \emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
 
 \subsubsection{Bounds}
-\label{sec:org0722780}
+\label{sec:org6a9e2a7}
 
 With no intelligent compiler/mapping:
 
 $$\epsilon_{eff} > \epsilon$$
 
 \subsubsection{Averaging \(\epsilon_{eff}\)}
-\label{sec:org35f8329}
+\label{sec:orgecfa42f}
 
 With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
 
 \subsubsection{Finding the real \(\epsilon_{eff} (n)\)}
-\label{sec:org937d3b3}
+\label{sec:orgaa5880f}
 
 \emph{Is not this thing kind of the error model?}
 
 \subsection{Near future}
-\label{sec:orgf728b60}
+\label{sec:org056e5a2}
 
 \sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
 \emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
@@ -170,7 +175,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{Probability of success relation with Quantum Volume}
-\label{sec:org2519610}
+\label{sec:org2bc3e4b}
 
 \emph{How Quantum Volume is related with Probability of success?}
 

@@ -18,8 +18,13 @@ Consequently we will use it as a metric to measure the runnability of the quantu
 While the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
+This report outlines the general definition of Quantum Volume and our studies on the quantum algorithm runnability.
+The second section gives a brief overview of ...
+The third section examines ...
 
 * Literature review. A Quantum Volume definition
+
+
 
 ** Hardware parameters
 
