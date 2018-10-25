@@ -30,7 +30,8 @@ In this section,
 
 ** Literature review
 
-Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018... 
+Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018.
+In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 *** Hardware parameters
 
@@ -108,7 +109,7 @@ We define *runnability* based on the separation of the concepts of /device/ Quan
 
 *** Quantum Volume of a device
 
-Following cite:Bishop_2017,Moll_2018, we can expand the Quantum Volume general equation ($\tilde{V}_Q$) with the other definitions and maximize for the biggest possible $n$. 
+Following cite:Bishop_2017,Moll_2018, we can expand the Quantum Volume general equation ($\tilde{V}_Q$) with the other definitions in the previous section and maximize for the biggest possible $n$. 
 Then, the maximum Quantum Volume that a device could run is defined by:
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
