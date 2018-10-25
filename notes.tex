@@ -1,4 +1,4 @@
-% Created 2018-10-24 Wed 18:22
+% Created 2018-10-25 Thu 10:37
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:org9afa232}
+\label{sec:orge496b19}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,12 +49,12 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Literature review. A Quantum Volume definition}
-\label{sec:org3243182}
+\label{sec:org43771bc}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}\ldots{}
 
 \subsection{Hardware parameters}
-\label{sec:orgb6a26da}
+\label{sec:orga0c71cb}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -67,13 +67,13 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsection{Definitions and metrics}
-\label{sec:org47eace0}
+\label{sec:orgcf2711a}
 
 In this section we extract some required definitions \cite{Bishop_2017,Moll_2018} to understand Quantum Volume. 
 
 
 \begin{description}
-\item[{Model algorithm.}] It is considered as the circuit unit for the Quantum Volume. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits.
+\item[{Model algorithm.}] It is considered as the circuit unit. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits.
 
 \item[{Effective error rate \(\epsilon_{eff}\).}] How well a device can implement arbitrary pairwise interactions between qubits. It is the error rate per \emph{model algorithm} averaged over many realizations of such depth-one circuits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
@@ -87,10 +87,10 @@ In this section we extract some required definitions \cite{Bishop_2017,Moll_2018
 \end{description}
 
 \section{Quantum Volume Evolution}
-\label{sec:org27156ef}
+\label{sec:org845b613}
 
 \subsection{Runnability}
-\label{sec:orgc7a842b}
+\label{sec:org52ea5b3}
 
 Following the \$\$
 
@@ -101,46 +101,95 @@ $$V_Q > V_Q^a$$
 One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:org81b829e}
+\label{sec:org56ed92e}
 
 Maximum Quantum Volume that a device could run
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
+%\begin{figure}
+
+%\centering
+\begin{minipage}{.45\textwidth}
+
+\centering
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{general_QV2.png}
+\end{center}
+
+\captionof{figure}{}
+\label{fig:deviceQV2}
+
+\end{minipage}%
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{general_QV1.png}
+\end{center}
+
+\captionof{figure}{}
+\label{fig:deviceQV1}
+
+\end{minipage}%
+
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:org185527b}
+\label{sec:orge00afb4}
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
-\subsubsection{Problem}
-\label{sec:orga00ba89}
+%\begin{figure}
 
-It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
+%\centering
+\begin{minipage}{.45\textwidth}
+
+\centering
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{V_q_analysis2.png}
+\end{center} 
+
+\captionof{figure}{}
+\label{fig:algorithmQV2}
+
+\end{minipage}%
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{V_q_analysis1.png}
+\end{center} 
+
+\captionof{figure}{}
+\label{fig:algorithmQV1}
+
+\end{minipage}%
 
 \subsection{Depict \(\epsilon_{eff}(n)\)}
-\label{sec:orgcf3149a}
+\label{sec:org3660794}
 
 \emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
 
 \subsubsection{Bounds}
-\label{sec:org50bdc70}
+\label{sec:org4c2ca3b}
 
 With no intelligent compiler/mapping:
 
 $$\epsilon_{eff} > \epsilon$$
 
 \subsubsection{Averaging \(\epsilon_{eff}\)}
-\label{sec:org6cf5900}
+\label{sec:org52189c3}
 
 With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
 
 \subsubsection{Finding the real \(\epsilon_{eff} (n)\)}
-\label{sec:org8bdd8ae}
+\label{sec:org50da1c3}
 
 \emph{Is not this thing kind of the error model?}
 
 \subsection{Near future}
-\label{sec:orgf64a6a0}
+\label{sec:org8f224b7}
 
 \sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
 \emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
@@ -150,7 +199,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{{\bfseries\sffamily TODO} Probability of success relation with Quantum Volume}
-\label{sec:org86f6f3a}
+\label{sec:org54f6209}
 
 \emph{How Quantum Volume is related with Probability of success?}
 
@@ -159,7 +208,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{BIB [delete this HEADER]}
-\label{sec:org5309cf5}
+\label{sec:org3583141}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}

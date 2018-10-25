@@ -43,7 +43,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume. 
 
 
-- Model algorithm. :: It is considered as the circuit unit for the Quantum Volume. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits. 
+- Model algorithm. :: It is considered as the circuit unit. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits. 
 
 - Effective error rate $\epsilon_{eff}$. :: How well a device can implement arbitrary pairwise interactions between qubits. It is the error rate per /model algorithm/ averaged over many realizations of such depth-one circuits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
@@ -115,11 +115,73 @@ Maximum Quantum Volume that a device could run
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
+#+BEGIN_EXPORT latex
+     %\begin{figure}
+     
+     %\centering
+     \begin{minipage}{.45\textwidth}
+
+     \centering
+
+#+END_EXPORT
+
+ [[file:general_QV2.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:deviceQV2}
+
+     \end{minipage}%
+     \hspace{1cm}
+     \begin{minipage}{.45\textwidth}
+
+#+END_EXPORT
+
+ [[file:general_QV1.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:deviceQV1}
+
+     \end{minipage}%
+#+END_EXPORT
+
 *** Quantum Volume of an algorithm
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
-*** Problem
+#+BEGIN_EXPORT latex
+     %\begin{figure}
+     
+     %\centering
+     \begin{minipage}{.45\textwidth}
+
+     \centering
+
+#+END_EXPORT
+
+[[file:V_q_analysis2.png]] 
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV2}
+
+     \end{minipage}%
+     \hspace{1cm}
+     \begin{minipage}{.45\textwidth}
+
+#+END_EXPORT
+
+[[file:V_q_analysis1.png]] 
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV1}
+
+     \end{minipage}%
+#+END_EXPORT
+
+*** Problem                                                      :noexport:
 
 It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
 
