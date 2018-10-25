@@ -47,21 +47,22 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume.
 
 
-- Model algorithm. :: In the literature, Bishop uses the term /model algorithm/ cite:Bishop_2017 to refer to a depth-1 circuit, constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits. Or what is the same, the model algorithm defines any two-qubit gates combination as circuit unit.
+- Model algorithm. :: In the literature, Bishop uses the term /model algorithm/ cite:Bishop_2017 to refer to a depth-one circuit, "constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits". Or, what is the same, the /model algorithm/ defines any single- or two-qubit gates combination as circuit unit. The mapping requirements of the device and the mapping quality is included as well. In the case that a two-qubit gate force any qubit to be routed, the gate additions will be included in the /model algorithm/.
 
-#+caption: Model algorithm example from cite:Moll_2018. Each step represents a possible combination of gates. The /model algorithm/ would be all the possible steps considered. Notice that step 2 requires a mapping process that is afterwards shown.
+#+caption: Model algorithm example from cite:Moll_2018. Each step represents a possible combination of gates considered as /model algorithm/. Notice that step 2 requires a mapping process that is shown afterwards.
 #+NAME: fig:model_alg
 #+ATTR_LATEX: :width 0.7\textwidth
 [[file:model_algorithm.png]]
 
 
-- Effective error rate $\epsilon_{eff}$. :: It is the error rate per /model algorithm/ averaged over many realizations of such depth-one circuits. In other words, $\epsilon_{eff}$ defines how well a device can implement arbitrary pairwise interactions between qubits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+- $\textbf{n}$ :: Number of active qubits in a device of $N$ qubits.
+
+
+- Effective error rate $\epsilon_{eff} \approx 1/(d n)$. :: It is the error rate per /model algorithm/, an averaged error over many realizations of depth-one circuits with random combinations of two-qubit gates. $\epsilon_{eff}$ defines how well a device can implement arbitrary pairwise interactions between qubits. As soon as it is the error of the /model algorithm/, it encapsulates errors of both single- and two-qubit gates. And it depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
 - Achievable circuit depth $d(N) \simeq \frac{1}{N \epsilon_{eff}}$ :: Maximum circuit depth for which the results are correctable and useful in some device.
 
 # /Note that the possibility that several consecutive errors could act as the correction of that error is not take into account/.
-
-- $\textbf{n}$ :: Number of active qubits in a device of $N$ qubits.
 
 - Quantum Volume $\tilde{V}_Q = min (N, d(N))^2$ :: quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
 

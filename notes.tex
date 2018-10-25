@@ -1,4 +1,4 @@
-% Created 2018-10-25 Thu 15:44
+% Created 2018-10-25 Thu 16:58
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:orgc8b61b6}
+\label{sec:org513b7f5}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,17 +49,17 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:org10ba80b}
+\label{sec:orgf1824c7}
 
 In this section, 
 
 \subsection{Literature review}
-\label{sec:org1748d58}
+\label{sec:org9f20232}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}. 
 
 \subsubsection{Hardware parameters}
-\label{sec:org0aa6b20}
+\label{sec:orgae49a9f}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -72,40 +72,43 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:orgf1f1fca}
+\label{sec:org856dad9}
 
 In this section we extract some required definitions \cite{Bishop_2017,Moll_2018} to understand Quantum Volume.
 
 
 \begin{description}
-\item[{Model algorithm.}] In the literature, Bishop uses the term \emph{model algorithm} \cite{Bishop_2017} to refer to a depth-1 circuit, constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits. Or what is the same, the model algorithm defines any two-qubit gates combination as circuit unit.
+\item[{Model algorithm.}] In the literature, Bishop uses the term \emph{model algorithm} \cite{Bishop_2017} to refer to a depth-one circuit, "constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits". Or, what is the same, the \emph{model algorithm} defines any single- or two-qubit gates combination as circuit unit. The mapping requirements of the device and the mapping quality is included as well. In the case that a two-qubit gate force any qubit to be routed, the gate additions will be included in the \emph{model algorithm}.
 \end{description}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org0b76ad2}
-Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates. The \emph{model algorithm} would be all the possible steps considered. Notice that step 2 requires a mapping process that is afterwards shown.}
+\caption{\label{fig:org457f52e}
+Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
 
 \begin{description}
-\item[{Effective error rate \(\epsilon_{eff}\).}] It is the error rate per \emph{model algorithm} averaged over many realizations of such depth-one circuits. In other words, \(\epsilon_{eff}\) defines how well a device can implement arbitrary pairwise interactions between qubits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+\item[{\(\textbf{n}\)}] Number of active qubits in a device of \(N\) qubits.
+\end{description}
+
+
+\begin{description}
+\item[{Effective error rate \(\epsilon_{eff} \approx 1/(d n)\).}] It is the error rate per \emph{model algorithm}, an averaged error over many realizations of depth-one circuits with random combinations of two-qubit gates. \(\epsilon_{eff}\) defines how well a device can implement arbitrary pairwise interactions between qubits. As soon as it is the error of the \emph{model algorithm}, it encapsulates errors of both single- and two-qubit gates. And it depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
 \item[{Achievable circuit depth \(d(N) \simeq \frac{1}{N \epsilon_{eff}}\)}] Maximum circuit depth for which the results are correctable and useful in some device.
 \end{description}
 
 \begin{description}
-\item[{\(\textbf{n}\)}] Number of active qubits in a device of \(N\) qubits.
-
 \item[{Quantum Volume \(\tilde{V}_Q = min (N, d(N))^2\)}] quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
 \end{description}
 
 \subsection{Insights}
-\label{sec:orgef4d502}
+\label{sec:org536b46a}
 
 \subsubsection{Runnability}
-\label{sec:org49966df}
+\label{sec:org1a41336}
 
 Following the \$\$
 
@@ -117,7 +120,7 @@ One may imagine the process of checking, whether or not, some cube with a given 
 
 \begin{enumerate}
 \item Quantum Volume of a device
-\label{sec:org0a19e5b}
+\label{sec:org51e0cb4}
 
 Maximum Quantum Volume that a device could run
 
@@ -151,7 +154,7 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 \end{minipage}%
 
 \item Quantum Volume of an algorithm
-\label{sec:orge6e470f}
+\label{sec:org0fa62cf}
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
@@ -184,31 +187,31 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 \end{enumerate}
 
 \subsubsection{Depict \(\epsilon_{eff}(n)\)}
-\label{sec:org2540dee}
+\label{sec:org3239651}
 
 \emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
 
 \begin{enumerate}
 \item Bounds
-\label{sec:org0e32aad}
+\label{sec:org9daee71}
 
 With no intelligent compiler/mapping:
 
 $$\epsilon_{eff} > \epsilon$$
 
 \item Averaging \(\epsilon_{eff}\)
-\label{sec:org1088ce8}
+\label{sec:org1f7a9e0}
 
 With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
 
 \item Finding the real \(\epsilon_{eff} (n)\)
-\label{sec:orga61ac91}
+\label{sec:orgf90bfcf}
 
 \emph{Is not this thing kind of the error model?}
 \end{enumerate}
 
 \subsubsection{Near future}
-\label{sec:orgf2bd0db}
+\label{sec:orga389865}
 
 \sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
 \emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
@@ -217,10 +220,10 @@ Following that reasoning, with current devices of \(\epsilon_{eff} > 10^{-3}\), 
 $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 \section{Methodology}
-\label{sec:orgbbc1f34}
+\label{sec:orgf5ee6c2}
 
 \section{{\bfseries\sffamily TODO} Probability of success relation with Quantum Volume}
-\label{sec:orgb213983}
+\label{sec:org3208db9}
 
 \emph{How Quantum Volume is related with Probability of success?}
 
@@ -229,7 +232,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{BIB [delete this HEADER]}
-\label{sec:org08de57a}
+\label{sec:orgf331849}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}
