@@ -24,11 +24,15 @@ This report outlines the general definition of Quantum Volume and our studies on
 The second section gives a brief overview of ...
 The third section examines ...
 
-* Literature review. A Quantum Volume definition
+* Quantum Volume definition
 
-Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018...
+In this section, 
 
-** Hardware parameters
+** Literature review
+
+Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018. 
+
+*** Hardware parameters
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -38,14 +42,20 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 - Gate set. Available hardware gate set
 - Maximum number of parallel operations. Number of operations that can be run in parallel
 
-** Definitions and metrics
+*** Definitions and metrics
 
-In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume. 
+In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume.
 
 
-- Model algorithm. :: It is considered as the circuit unit. It performs a depth-1 circuit, constructed by random 2-qubit unitaries chosen uniformly over SU (4) on a random pairing of the qubits. 
+- Model algorithm. :: In the literature, Bishop uses the term /model algorithm/ cite:Bishop_2017 to refer to a depth-1 circuit, constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits. Or what is the same, the model algorithm defines any two-qubit gates combination as circuit unit.
 
-- Effective error rate $\epsilon_{eff}$. :: How well a device can implement arbitrary pairwise interactions between qubits. It is the error rate per /model algorithm/ averaged over many realizations of such depth-one circuits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+#+caption: Model algorithm examples from cite:Moll_2018
+#+NAME: fig:model_alg
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:model_algorithm.png]]
+
+
+- Effective error rate $\epsilon_{eff}$. :: It is the error rate per /model algorithm/ averaged over many realizations of such depth-one circuits. In other words, $\epsilon_{eff}$ defines how well a device can implement arbitrary pairwise interactions between qubits. It encapsulates errors of both single- and two-qubit gates. It depends on the gate overhead required when all-to-all connectivity, full parallelism and a suitable gate set is not available. In other words, the effective error rate takes into account the whole mapping of the circuit. It depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
 - Achievable circuit depth $d(N) \simeq \frac{1}{N \epsilon_{eff}}$ :: Maximum circuit depth for which the results are correctable and useful in some device.
 
@@ -57,7 +67,7 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
 
     # $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
-*** Heuristic routing algorithm parameters                       :noexport:
+**** Heuristic routing algorithm parameters                     :noexport:
 
     - $(u_j, v_j)$ :: qubit pairs that interact
 
@@ -72,7 +82,7 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
 
     - $r$ :: lowest computed depth
 
-** Heuristic routing algorithm                                    :noexport:
+*** Heuristic routing algorithm                                  :noexport:
 
     Since the algorithm is randomized, we repeat $D(u,v) = (1+|\xi_{u,v}|) D_0 (u,v)^2$ and choose the lowest computed depth, $r$.
     Averaging r over many instances of the model algorithm gives the effective error rate as
@@ -83,21 +93,16 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
 
     /Note that the algorithm is random/.
 
-** Insights and Criticism                                         :noexport:
+*** Insights and Criticism                                       :noexport:
 
     - Definitions are too vague
     - The error model is quite simplistic
     - They are not considering the different gates times
     - ...
 
-* Quantum Volume Evolution
+** Insights
 
-# # Intro of how we want to work with Quantum Volume.
-# First we will calculate the Quantum Volume of a circuit (before and after mapping. We will be able to see differences because out metric is not following the Quantum Volume $min$ convention)
-# +Then, without calculating any effective error rate, we will consider that the Quantum Volume of the device should be smaller than the Quantum Volume of the device.+
-# +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or effective error rate required to run a certain algorithm.+
-
-** Runnability
+*** Runnability
 
 # /"Can this device run a given algorithm?"/
 
@@ -109,7 +114,7 @@ $$V_Q > V_Q^a$$
 
 One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 
-*** Quantum Volume of a device
+**** Quantum Volume of a device
 
 Maximum Quantum Volume that a device could run
 
@@ -126,7 +131,7 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 #+END_EXPORT
 
  [[file:general_QV2.png]]
-
+ 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
      \label{fig:deviceQV2}
@@ -146,7 +151,7 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
      \end{minipage}%
 #+END_EXPORT
 
-*** Quantum Volume of an algorithm
+**** Quantum Volume of an algorithm
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
@@ -181,29 +186,29 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
      \end{minipage}%
 #+END_EXPORT
 
-*** Problem                                                      :noexport:
+**** Problem                                                    :noexport:
 
 It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
 
-** Depict $\epsilon_{eff}(n)$
+*** Depict $\epsilon_{eff}(n)$
 
 /How to depict a function of $\epsilon_{eff}$ based on experiments/simulations?/
 
-*** Bounds
+**** Bounds
 
 With no intelligent compiler/mapping:
 
 $$\epsilon_{eff} > \epsilon$$
 
-*** Averaging $\epsilon_{eff}$
+**** Averaging $\epsilon_{eff}$
 
 With several random circuits of just 1 cycle, check their fidelity and average. That would be the $\bar{\epsilon}_{eff}$.
 
-*** Finding the real $\epsilon_{eff} (n)$
+**** Finding the real $\epsilon_{eff} (n)$
 
 /Is not this thing kind of the error model?/
 
-** Near future
+*** Near future
 
 +Quantum Volume assumes that a square circuit ($d = \frac{1}{N \epsilon_{eff}} = N$) is the maximum a quantum device could get in term of errors.+
 /Maybe is not that but the initial maximum depth calculation formula that leads you to this result/
@@ -211,6 +216,12 @@ Following that reasoning, with current devices of $\epsilon_{eff} > 10^{-3}$, th
 
 $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
+* Methodology
+
+# # Intro of how we want to work with Quantum Volume.
+# First we will calculate the Quantum Volume of a circuit (before and after mapping. We will be able to see differences because out metric is not following the Quantum Volume $min$ convention)
+# +Then, without calculating any effective error rate, we will consider that the Quantum Volume of the device should be smaller than the Quantum Volume of the device.+
+# +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or effective error rate required to run a certain algorithm.+
 
 * Thoughts                                                         :noexport:
 
