@@ -49,7 +49,7 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
 
 - Model algorithm. :: In the literature, Bishop uses the term /model algorithm/ cite:Bishop_2017 to refer to a depth-1 circuit, constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits. Or what is the same, the model algorithm defines any two-qubit gates combination as circuit unit.
 
-#+caption: Model algorithm examples from cite:Moll_2018
+#+caption: Model algorithm example from cite:Moll_2018. Each step represents a possible combination of gates. The /model algorithm/ would be all the possible steps considered. Notice that step 2 requires a mapping process that is afterwards shown.
 #+NAME: fig:model_alg
 #+ATTR_LATEX: :width 0.7\textwidth
 [[file:model_algorithm.png]]

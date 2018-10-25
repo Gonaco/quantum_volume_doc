@@ -1,4 +1,4 @@
-% Created 2018-10-25 Thu 15:20
+% Created 2018-10-25 Thu 15:44
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:org4b83588}
+\label{sec:orgc8b61b6}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,17 +49,17 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:orgccf09dd}
+\label{sec:org10ba80b}
 
 In this section, 
 
 \subsection{Literature review}
-\label{sec:org1ac377a}
+\label{sec:org1748d58}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}. 
 
 \subsubsection{Hardware parameters}
-\label{sec:org2326a26}
+\label{sec:org0aa6b20}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -72,7 +72,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:orgb5e898e}
+\label{sec:orgf1f1fca}
 
 In this section we extract some required definitions \cite{Bishop_2017,Moll_2018} to understand Quantum Volume.
 
@@ -84,8 +84,8 @@ In this section we extract some required definitions \cite{Bishop_2017,Moll_2018
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:orge3010ce}
-Model algorithm examples}
+\caption{\label{fig:org0b76ad2}
+Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates. The \emph{model algorithm} would be all the possible steps considered. Notice that step 2 requires a mapping process that is afterwards shown.}
 \end{figure}
 
 
@@ -102,10 +102,10 @@ Model algorithm examples}
 \end{description}
 
 \subsection{Insights}
-\label{sec:orgcb503ce}
+\label{sec:orgef4d502}
 
 \subsubsection{Runnability}
-\label{sec:org4c69f8c}
+\label{sec:org49966df}
 
 Following the \$\$
 
@@ -117,7 +117,7 @@ One may imagine the process of checking, whether or not, some cube with a given 
 
 \begin{enumerate}
 \item Quantum Volume of a device
-\label{sec:org213b5f0}
+\label{sec:org0a19e5b}
 
 Maximum Quantum Volume that a device could run
 
@@ -151,7 +151,7 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 \end{minipage}%
 
 \item Quantum Volume of an algorithm
-\label{sec:orge666401}
+\label{sec:orge6e470f}
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
@@ -184,31 +184,31 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 \end{enumerate}
 
 \subsubsection{Depict \(\epsilon_{eff}(n)\)}
-\label{sec:org4005a2c}
+\label{sec:org2540dee}
 
 \emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
 
 \begin{enumerate}
 \item Bounds
-\label{sec:org0eff0c7}
+\label{sec:org0e32aad}
 
 With no intelligent compiler/mapping:
 
 $$\epsilon_{eff} > \epsilon$$
 
 \item Averaging \(\epsilon_{eff}\)
-\label{sec:org6e4b4da}
+\label{sec:org1088ce8}
 
 With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
 
 \item Finding the real \(\epsilon_{eff} (n)\)
-\label{sec:org61d48f4}
+\label{sec:orga61ac91}
 
 \emph{Is not this thing kind of the error model?}
 \end{enumerate}
 
 \subsubsection{Near future}
-\label{sec:orgf9706fd}
+\label{sec:orgf2bd0db}
 
 \sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
 \emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
@@ -217,10 +217,10 @@ Following that reasoning, with current devices of \(\epsilon_{eff} > 10^{-3}\), 
 $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 \section{Methodology}
-\label{sec:orge1862d5}
+\label{sec:orgbbc1f34}
 
 \section{{\bfseries\sffamily TODO} Probability of success relation with Quantum Volume}
-\label{sec:orgaa7fa47}
+\label{sec:orgb213983}
 
 \emph{How Quantum Volume is related with Probability of success?}
 
@@ -229,7 +229,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{BIB [delete this HEADER]}
-\label{sec:orgcea84d0}
+\label{sec:org08de57a}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}
