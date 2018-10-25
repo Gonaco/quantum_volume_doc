@@ -30,7 +30,7 @@ In this section,
 
 ** Literature review
 
-Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018. 
+Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018... 
 
 *** Hardware parameters
 
@@ -44,7 +44,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 
 *** Definitions and metrics
 
-In this section we extract some required definitions cite:Bishop_2017,Moll_2018 to understand Quantum Volume.
+In this section we explain some required definitions, infered from cite:Bishop_2017,Moll_2018, to understand Quantum Volume.
 
 
 - Model algorithm. :: In the literature, Bishop uses the term /model algorithm/ cite:Bishop_2017 to refer to a depth-one circuit, "constructed by random 2-qubit unitary matrix chosen uniformly over SU (4) on a random pairing of the qubits". Or, what is the same, the /model algorithm/ defines any single- or two-qubit gates combination as circuit unit. The mapping requirements of the device and the mapping quality is included as well. In the case that a two-qubit gate force any qubit to be routed, the gate additions will be included in the /model algorithm/.
@@ -55,7 +55,7 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
 [[file:model_algorithm.png]]
 
 
-- $\textbf{n}$ :: Number of active qubits in a device of $N$ qubits.
+- $\textbf{n}$ :: Number of active qubits in a device of $N$ qubits for a given algorithm.
 
 
 - Effective error rate $\epsilon_{eff} \approx 1/(d n)$. :: It is the error rate per /model algorithm/, an averaged error over many realizations of depth-one circuits with random combinations of two-qubit gates. $\epsilon_{eff}$ defines how well a device can implement arbitrary pairwise interactions between qubits. As soon as it is the error of the /model algorithm/, it encapsulates errors of both single- and two-qubit gates. And it depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
@@ -101,25 +101,20 @@ In this section we extract some required definitions cite:Bishop_2017,Moll_2018 
     - They are not considering the different gates times
     - ...
 
-** Insights
+** Insights and new ideas
 
-*** Runnability
+After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
+We define *runnability* based on the separation of the concepts of /device/ Quantum Volume ($V_Q$) and /algorithm/ Quantum Volume ($V^a_Q$).
 
-# /"Can this device run a given algorithm?"/
+*** Quantum Volume of a device
 
-Following the $$
-
-We define runnability as 
-
-$$V_Q > V_Q^a$$
-
-One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
-
-**** Quantum Volume of a device
-
-Maximum Quantum Volume that a device could run
+Following cite:Bishop_2017,Moll_2018, we can expand the Quantum Volume general equation ($\tilde{V}_Q$) with the other definitions and maximize for the biggest possible $n$. 
+Then, the maximum Quantum Volume that a device could run is defined by:
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+We define this Quantum Volume as the /device/ Quantum Volume. 
+In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of $n$ and $\epsilon_{eff}$ is shown. 
 
 #+BEGIN_EXPORT latex
      %\begin{figure}
@@ -152,7 +147,9 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
      \end{minipage}%
 #+END_EXPORT
 
-**** Quantum Volume of an algorithm
+*** Quantum Volume of an algorithm
+
+
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
@@ -191,7 +188,19 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 
 It could be the case that one quantum circuit using more qubits than the ones available in a device has lower Quantum Volume than the one in the device. This would mean that theoretically the algorithm could be run in the quantum system, when it actually couldn't.
 
-*** Depict $\epsilon_{eff}(n)$
+*** Runnability
+
+# /"Can this device run a given algorithm?"/
+
+Following the $$
+
+We define runnability as 
+
+$$V_Q > V_Q^a$$
+
+One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
+
+*** Depict $\epsilon_{eff}(n)$                                   :noexport:
 
 /How to depict a function of $\epsilon_{eff}$ based on experiments/simulations?/
 
@@ -209,7 +218,7 @@ With several random circuits of just 1 cycle, check their fidelity and average. 
 
 /Is not this thing kind of the error model?/
 
-*** Near future
+*** Near future                                                  :noexport:
 
 +Quantum Volume assumes that a square circuit ($d = \frac{1}{N \epsilon_{eff}} = N$) is the maximum a quantum device could get in term of errors.+
 /Maybe is not that but the initial maximum depth calculation formula that leads you to this result/

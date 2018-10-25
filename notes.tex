@@ -1,4 +1,4 @@
-% Created 2018-10-25 Thu 16:58
+% Created 2018-10-25 Thu 18:08
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:org513b7f5}
+\label{sec:orgf864443}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,17 +49,17 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:orgf1824c7}
+\label{sec:org65558eb}
 
 In this section, 
 
 \subsection{Literature review}
-\label{sec:org9f20232}
+\label{sec:orgfbfc19c}
 
-Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}. 
+Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}\ldots{} 
 
 \subsubsection{Hardware parameters}
-\label{sec:orgae49a9f}
+\label{sec:orga872f39}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -72,9 +72,9 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:org856dad9}
+\label{sec:org709e845}
 
-In this section we extract some required definitions \cite{Bishop_2017,Moll_2018} to understand Quantum Volume.
+In this section we explain some required definitions, infered from \cite{Bishop_2017,Moll_2018}, to understand Quantum Volume.
 
 
 \begin{description}
@@ -84,13 +84,13 @@ In this section we extract some required definitions \cite{Bishop_2017,Moll_2018
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org457f52e}
+\caption{\label{fig:org6ac02b0}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
 
 \begin{description}
-\item[{\(\textbf{n}\)}] Number of active qubits in a device of \(N\) qubits.
+\item[{\(\textbf{n}\)}] Number of active qubits in a device of \(N\) qubits for a given algorithm.
 \end{description}
 
 
@@ -104,27 +104,22 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \item[{Quantum Volume \(\tilde{V}_Q = min (N, d(N))^2\)}] quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
 \end{description}
 
-\subsection{Insights}
-\label{sec:org536b46a}
+\subsection{Insights and new ideas}
+\label{sec:org20c38a8}
 
-\subsubsection{Runnability}
-\label{sec:org1a41336}
+After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
+We define \textbf{runnability} based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
 
-Following the \$\$
+\subsubsection{Quantum Volume of a device}
+\label{sec:org7e5ca89}
 
-We define runnability as 
-
-$$V_Q > V_Q^a$$
-
-One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
-
-\begin{enumerate}
-\item Quantum Volume of a device
-\label{sec:org51e0cb4}
-
-Maximum Quantum Volume that a device could run
+Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions and maximize for the biggest possible \(n\). 
+Then, the maximum Quantum Volume that a device could run is defined by:
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+
+We define this Quantum Volume as the \emph{device} Quantum Volume. 
+In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of \(n\) and \(\epsilon_{eff}\) is shown. 
 
 %\begin{figure}
 
@@ -153,8 +148,10 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
 \end{minipage}%
 
-\item Quantum Volume of an algorithm
-\label{sec:org0fa62cf}
+\subsubsection{Quantum Volume of an algorithm}
+\label{sec:org67aa54a}
+
+
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
@@ -184,46 +181,23 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 \label{fig:algorithmQV1}
 
 \end{minipage}%
-\end{enumerate}
 
-\subsubsection{Depict \(\epsilon_{eff}(n)\)}
-\label{sec:org3239651}
+\subsubsection{Runnability}
+\label{sec:org963d60f}
 
-\emph{How to depict a function of \(\epsilon_{eff}\) based on experiments/simulations?}
+Following the \$\$
 
-\begin{enumerate}
-\item Bounds
-\label{sec:org9daee71}
+We define runnability as 
 
-With no intelligent compiler/mapping:
+$$V_Q > V_Q^a$$
 
-$$\epsilon_{eff} > \epsilon$$
-
-\item Averaging \(\epsilon_{eff}\)
-\label{sec:org1f7a9e0}
-
-With several random circuits of just 1 cycle, check their fidelity and average. That would be the \(\bar{\epsilon}_{eff}\).
-
-\item Finding the real \(\epsilon_{eff} (n)\)
-\label{sec:orgf90bfcf}
-
-\emph{Is not this thing kind of the error model?}
-\end{enumerate}
-
-\subsubsection{Near future}
-\label{sec:orga389865}
-
-\sout{Quantum Volume assumes that a square circuit (\(d = \frac{1}{N \epsilon_{eff}} = N\)) is the maximum a quantum device could get in term of errors.}
-\emph{Maybe is not that but the initial maximum depth calculation formula that leads you to this result}
-Following that reasoning, with current devices of \(\epsilon_{eff} > 10^{-3}\), the maximum \(N\) will be
-
-$$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
+One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 
 \section{Methodology}
-\label{sec:orgf5ee6c2}
+\label{sec:orgda7405d}
 
 \section{{\bfseries\sffamily TODO} Probability of success relation with Quantum Volume}
-\label{sec:org3208db9}
+\label{sec:org8bd8ba8}
 
 \emph{How Quantum Volume is related with Probability of success?}
 
@@ -232,7 +206,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 
 \section{BIB [delete this HEADER]}
-\label{sec:orgf331849}
+\label{sec:org9c64f54}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}
