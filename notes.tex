@@ -1,4 +1,4 @@
-% Created 2018-10-26 Fri 15:45
+% Created 2018-10-26 Fri 15:48
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:orgf1d0a69}
+\label{sec:org7bd4b7a}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,18 +49,18 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:org430e5b0}
+\label{sec:org94fdcc3}
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \subsection{Literature review}
-\label{sec:orgfe594ad}
+\label{sec:org4a7786b}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}.
 In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 \subsubsection{Hardware parameters}
-\label{sec:org882df1b}
+\label{sec:org712249e}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -73,7 +73,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:orgbd96aa5}
+\label{sec:org9e3508a}
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
@@ -86,7 +86,7 @@ In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_20
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org46646ff}
+\caption{\label{fig:orgeda9637}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
@@ -107,14 +107,14 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \end{description}
 
 \subsection{Runnability}
-\label{sec:orgebba433}
+\label{sec:orgbfd0149}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
 We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
 
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:org8673f48}
+\label{sec:orgb89bdc5}
 
 Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
@@ -156,7 +156,7 @@ Therefore, we could say that the main limit for the \(V_Q\) is the \(\epsilon_{e
 \end{minipage}%
 
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:org43d80a3}
+\label{sec:orga6379c9}
 
 As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\):
 
@@ -214,7 +214,7 @@ Considering that most of our work is not going to be in any of these extreme cas
 $$V_Q^a =  n \times d$$
 
 \subsubsection{Runnability}
-\label{sec:org47638f1}
+\label{sec:org837360d}
 
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
@@ -225,10 +225,10 @@ For instance, one may imagine the process of checking, whether or not, some cube
 If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
 
 \section{Methodology}
-\label{sec:org1af9e62}
+\label{sec:org8adb06e}
 
 \section{BIB\hfill{}\textsc{ignore}}
-\label{sec:org23b22bc}
+\label{sec:org4841ddc}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}
