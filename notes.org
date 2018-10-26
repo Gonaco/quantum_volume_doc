@@ -176,6 +176,41 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 # [[file:V_q_analysis2.png]] 
 
+file:V_q_analysis_asym2.png
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV2asym}
+
+     \end{minipage}%
+     \hspace{1cm}
+     \begin{minipage}{.45\textwidth}
+
+#+END_EXPORT
+
+# [[file:V_q_analysis1.png]] 
+
+[[file:V_q_analysis_asym1.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV1asym}
+
+     \end{minipage}%
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+     %\begin{figure}
+     
+     %\centering
+     \begin{minipage}{.45\textwidth}
+
+     \centering
+
+#+END_EXPORT
+
+# [[file:V_q_analysis2.png]] 
+
 file:V_q_analysis_sym2.png
 
 #+BEGIN_EXPORT latex
