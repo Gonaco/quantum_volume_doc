@@ -174,9 +174,9 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 #+END_EXPORT
 
-[[file:V_q_analysis2.png]] 
+# [[file:V_q_analysis2.png]] 
 
- file:V_q_analysis_sym2.png]]
+file:V_q_analysis_sym2.png
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
