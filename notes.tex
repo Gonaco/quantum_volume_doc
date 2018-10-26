@@ -1,4 +1,4 @@
-% Created 2018-10-25 Thu 19:12
+% Created 2018-10-26 Fri 15:45
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,7 +37,7 @@
 
 
 \section{Introduction}
-\label{sec:org977cce4}
+\label{sec:orgf1d0a69}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -49,18 +49,18 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:orgd65f145}
+\label{sec:org430e5b0}
 
-In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by it.
+In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \subsection{Literature review}
-\label{sec:org1dd4c1a}
+\label{sec:orgfe594ad}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}.
 In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 \subsubsection{Hardware parameters}
-\label{sec:org58baaf4}
+\label{sec:org882df1b}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -73,54 +73,60 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:org78619bb}
+\label{sec:orgbd96aa5}
 
-In this section we explain some required definitions, inferred from \cite{Bishop_2017,Moll_2018}, to understand Quantum Volume.
+In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
+In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
 
 
 \begin{description}
-\item[{Model algorithm.}] In the literature, Bishop uses the term \emph{model algorithm} \cite{Bishop_2017} to refer to a depth-one circuit, "constructed by random 2-qubit unitary matrix chosen uniformly over \(SU (4)\) on a random pairing of the qubits". Or, what is the same, the \emph{model algorithm} defines any single- or two-qubit gates combination as circuit unit. The mapping requirements of the device and the mapping quality is included as well. In the case that a two-qubit gate force any qubit to be routed, the gate additions will be included in the \emph{model algorithm}.
+\item[{Model algorithm.}] In the literature, Bishop et al. use the term \emph{model algorithm} in \cite{Bishop_2017} to refer to a depth-one circuit, "constructed by random 2-qubit unitary matrix chosen uniformly over \(SU (4)\) on a random pairing of the qubits". Or, what is the same, the \emph{model algorithm} is a \emph{circuit unit} defined by a combination of any single- or two-qubit gates. The mapping requirements of the device and the mapping quality is included as well. In the case that a two-qubit gate force any qubit to be routed, the gate additions will be included in the \emph{model algorithm}. Therefore, we can say that the it is a device specific metric, as soon as it takes into account the constraints from it.
 \end{description}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org7953257}
+\caption{\label{fig:org46646ff}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
 
 \begin{description}
-\item[{\(\textbf{n}\)}] Number of active qubits in a device of \(N\) qubits for a given algorithm.
+\item[{Active qubits (\(\textbf{n}\))}] Number of active qubits in a device of \(N\) qubits for a given algorithm.
 \end{description}
 
 
 \begin{description}
-\item[{Effective error rate \(\epsilon_{eff} \approx 1/(d n)\).}] It is the error rate per \emph{model algorithm}, an averaged error over many realizations of depth-one circuits with random combinations of two-qubit gates. \(\epsilon_{eff}\) defines how well a device can implement arbitrary pairwise interactions between qubits. As soon as it is the error of the \emph{model algorithm}, it encapsulates errors of both single- and two-qubit gates. And it depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
+\item[{Effective error rate (\(\epsilon_{eff} \sim 1/(d n)\)).}] It defines how well a device can implement arbitrary pairwise interactions between qubits. \(\epsilon_{eff}\) is the error rate per \emph{model algorithm}, an averaged error over many realizations of depth-one circuits conformed with random combinations of single- and two-qubit gates. It encapsulates errors of both single- and two-qubit gates. And it depends not only on the gate error rates and connectivity, but also on the sophistication of the scheduling algorithm responsible for mapping the model algorithm to the hardware.
 
-\item[{Achievable circuit depth \(d(N) \simeq \frac{1}{N \epsilon_{eff}}\)}] Maximum circuit depth for which the results are correctable and useful in some device.
+\item[{Achievable circuit depth (\(d(N) \simeq \frac{1}{N \epsilon_{eff}}\))}] Maximum circuit depth for which the results, after running it on some device, are correctable and useful.
 \end{description}
 
 \begin{description}
-\item[{Quantum Volume \(\tilde{V}_Q = min (N, d(N))^2\)}] quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
+\item[{(General) Quantum Volume (\(\tilde{V}_Q = min (N, d(N))^2\))}] quantifies the space-time volume occupied by a model circuit with random two-qubit gates that can be reliably executed on a given device.
 \end{description}
 
-\subsection{Insights and new ideas}
-\label{sec:org9bba458}
+\subsection{Runnability}
+\label{sec:orgebba433}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
-We define \textbf{runnability} based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
+We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
+
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:org09a36bb}
+\label{sec:org8673f48}
 
-Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\). 
+Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
 
 $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
 We define this Quantum Volume as the \emph{device} Quantum Volume. 
-In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of \(n\) and \(\epsilon_{eff}\) is shown. 
+In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of \(n\) and \(\epsilon_{eff}\) is shown.
+For this example we are not considering \(\epsilon{eff} (n)\).
+Otherwise it would be a device specific graph and the purpose of this figure is tho show the general behaviour of \(V_Q\).
+Note that the axis are in a logarithmic scale in order to show that \(V_Q\) grows exponentially as \(n\) increase and that \(\epsilon_{eff}\) is abruptly detonating \(V_Q\) growth from values smaller than \(10^{-3}\).
+Therefore, we could say that the main limit for the \(V_Q\) is the \(\epsilon_{eff}\).
 
 %\begin{figure}
 
@@ -150,11 +156,16 @@ In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the 
 \end{minipage}%
 
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:orgf08f362}
+\label{sec:org43d80a3}
 
-
+As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\):
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
+
+Note that \(d\) is not \(d(N)\) but the real depth of the given algorithm.
+At the same time, \(n\) is the number of qubits required by the algorithm itself.
+One can see how \(d\) and \(n\) are equally important in Fig. \ref{} and Fig. \ref{}.
+The growth of both variables causes an equally exponential growth of \(V^a_Q\).
 
 %\begin{figure}
 
@@ -183,31 +194,41 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 
 \end{minipage}%
 
+We aware that this approach has a limitation regarding the mapping of the quantum circuit.
+As explained before, \(V_Q\) is able to take into account the sophistication of the mapping procedure.
+It is inherited in the \emph{model algorithm}.
+But, in this case, the \(V^a_Q\) of an algorithm before and after mapping will remain the same.
+After mapping an algorithm, the usual effect is an increase in the depth or the number of operations.
+Rare mapping methods consider the qubit addition in the technique.
+And, even considering it, \(n\) is not often growing too much in comparison with \(d\).
+In the current NISQ era, the quantum circuits need much less qubits than depth.
+Therefore, most of the times, the minimum value between \(n\) and \(d\) will be \(n\).
+As soon as \(V^a_Q\) is taking into account the minimum of them and the mapping procedure affects mostly to \(d\) we can conclude that this definition of \(V^a_Q\) is not considering the mapping in its results.
+
+A simplified solution for this problem would be the \(V^a_Q\) definition as the multiplication of \(n\) and \(d\).
+Unfortunately, this approach has several drawbacks as well.
+As Moll et al. point in \cite{Moll_2018}, extreme cases of high \(n\) and low \(d\) -- or the other way around -- lead to inconsistencies of the metric.
+Higher values for devices, that actually are not working that good, than others with real higher computational power.
+Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we consider the definition of the algorithm's Quantum Volume as:
+
+$$V_Q^a =  n \times d$$
+
 \subsubsection{Runnability}
-\label{sec:org513bb98}
+\label{sec:org47638f1}
 
-Following the \$\$
+Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
+That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
 
-We define runnability as 
+$$\text{Runnability: } V_Q > V^a_Q$$
 
-$$V_Q > V_Q^a$$
-
-One may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
+For instance, one may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
+If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
 
 \section{Methodology}
-\label{sec:org6467016}
+\label{sec:org1af9e62}
 
-\section{{\bfseries\sffamily TODO} Probability of success relation with Quantum Volume}
-\label{sec:org65879e8}
-
-\emph{How Quantum Volume is related with Probability of success?}
-
-\emph{How to calculate \(\epsilon_{eff}\) with the methods of Probability of success?}
-
-
-
-\section{BIB [delete this HEADER]}
-\label{sec:org569c2b2}
+\section{BIB\hfill{}\textsc{ignore}}
+\label{sec:org23b22bc}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}
