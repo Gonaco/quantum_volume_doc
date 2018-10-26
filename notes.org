@@ -6,7 +6,6 @@
 
 #+OPTIONS: toc:nil
 
-
 * Introduction
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, ...), it is often difficult to benchmark the usefulness or power of quantum systems. 
@@ -118,10 +117,10 @@ $$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
 
 We define this Quantum Volume as the /device/ Quantum Volume. 
 In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of $n$ and $\epsilon_{eff}$ is shown.
-For this example we are not considering $\epsilon{eff} (n)$.
+For this example we are not considering $\epsilon_{eff} (n)$.
 Otherwise it would be a device specific graph and the purpose of this figure is tho show the general behaviour of $V_Q$.
 Note that the axis are in a logarithmic scale in order to show that $V_Q$ grows exponentially as $n$ increase and that $\epsilon_{eff}$ is abruptly detonating $V_Q$ growth from values smaller than $10^{-3}$.
-Therefore, we could say that the main limit for the $V_Q$ is the $\epsilon_{eff}$.
+Therefore, we outline that the main limit for the $V_Q$ is the $\epsilon_{eff}$.
 
 #+BEGIN_EXPORT latex
      %\begin{figure}
@@ -156,13 +155,13 @@ Therefore, we could say that the main limit for the $V_Q$ is the $\epsilon_{eff}
 
 *** Quantum Volume of an algorithm
 
-As with $V_Q$, we initially defined the algorithm's Quantum Volume from the general equation $\tilde{V}_Q$:
+As with $V_Q$, we initially defined the algorithm's Quantum Volume from the general equation $\tilde{V}_Q$, although we will later adapt it.
 
 $$V_Q^a = \min \left[ n,d \right]^2$$
 
 Note that $d$ is not $d(N)$ but the real depth of the given algorithm.
 At the same time, $n$ is the number of qubits required by the algorithm itself.
-One can see how $d$ and $n$ are equally important in Fig. \ref{} and Fig. \ref{}.
+One can see how $d$ and $n$ are equally important in Fig. \ref{fig:algorithmQV2} and Fig. \ref{fig:algorithmQV1}.
 The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 #+BEGIN_EXPORT latex
@@ -177,6 +176,8 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 [[file:V_q_analysis2.png]] 
 
+ file:V_q_analysis_sym2.png]]
+
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
      \label{fig:algorithmQV2}
@@ -187,7 +188,9 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 #+END_EXPORT
 
-[[file:V_q_analysis1.png]] 
+# [[file:V_q_analysis1.png]] 
+
+[[file:V_q_analysis_sym1.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -209,14 +212,46 @@ As soon as $V^a_Q$ is taking into account the minimum of them and the mapping pr
 
 A simplified solution for this problem would be the $V^a_Q$ definition as the multiplication of $n$ and $d$.
 Unfortunately, this approach has several drawbacks as well.
-As Moll et al. point in cite:Moll_2018, extreme cases of high $n$ and low $d$ -- or the other way around -- lead to inconsistencies of the metric.
-Higher values for devices, that actually are not working that good, than others with real higher computational power.
+As Moll et al. point out cite:Moll_2018, extreme cases of high $n$ and low $d$ -- or the other way around -- lead to inconsistencies of the multiplication metric.
 Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we consider the definition of the algorithm's Quantum Volume as:
 
+# It will result in higher values for devices that actually are not working that good in comparison with others that have real higher computational power.
+# For instance, ...
 # the current quantum systems with minimal error rates are the systems with very low amount of qubits.
 # And, at the same time, this systems are not relevant in computational power, although are able to run long circuits.
 
 $$V_Q^a =  n \times d$$
+
+#+BEGIN_EXPORT latex
+     %\begin{figure}
+     
+     %\centering
+     \begin{minipage}{.45\textwidth}
+
+     \centering
+
+#+END_EXPORT
+
+[[file:V_q_analysis_mult2.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmmultQV2}
+
+     \end{minipage}%
+     \hspace{1cm}
+     \begin{minipage}{.45\textwidth}
+
+#+END_EXPORT
+
+[[file:V_q_analysis_mult1.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmmultQV1}
+
+     \end{minipage}%
+#+END_EXPORT
 
 **** Problem                                                    :noexport:
 
@@ -229,10 +264,17 @@ It could be the case that one quantum circuit using more qubits than the ones av
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the $V_Q$ should be bigger than $V^a_Q$.
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
 
-$$\text{Runnability: } V_Q > V^a_Q$$
+$$\text{Runnable if: } V_Q > V^a_Q$$
 
-For instance, one may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
+For instance, in order to understand this concept, one may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
+
+Indeed, one acceptable criticism of this definition is that, as $V_Q$ and $V^a_Q$ are finally defined in the previous sections, it seems that it is not really fair to compare them.
+But, as soon as the general behaviour of the final and the initial $V^a_Q$ is the same -- one can see in the Fig. \ref{fig:algorithmQV1} and Fig. \ref{fig:algorithmmultQV1} -- and that the final definition tends to be bigger than the initial one -- so it is defining a more restrictive and exigent scenario -- we believe that this definition of runnability mathematically correct and useful.
+
+Therefore, we define runnability as the condition of:
+
+$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d$$
 
 *** Depict $\epsilon_{eff}(n)$                                   :noexport:
 
