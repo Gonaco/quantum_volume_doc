@@ -1,4 +1,4 @@
-% Created 2018-10-27 Sat 19:53
+% Created 2018-10-27 Sat 21:30
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -23,10 +23,10 @@
 \geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 \author{Daniel Moreno Manzano}
 \date{\today}
-\title{Quantum Volume}
+\title{Quantum Volume Report}
 \hypersetup{
  pdfauthor={Daniel Moreno Manzano},
- pdftitle={Quantum Volume},
+ pdftitle={Quantum Volume Report},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={Emacs 25.1.1 (Org mode 9.1.14)}, 
@@ -36,7 +36,7 @@
 \maketitle
 
 \section{Introduction}
-\label{sec:org7ee918d}
+\label{sec:org165aa06}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -48,18 +48,18 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:org08821a3}
+\label{sec:org8a7f50d}
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \subsection{Literature review}
-\label{sec:org04d1f51}
+\label{sec:org56d24ed}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}.
 In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 \subsubsection{Hardware parameters}
-\label{sec:orgdcefd77}
+\label{sec:org0a1a80d}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -72,7 +72,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:org0714c25}
+\label{sec:org100a244}
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
@@ -85,7 +85,7 @@ In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_20
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org2682bf7}
+\caption{\label{fig:orgd14fa33}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
@@ -106,14 +106,14 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \end{description}
 
 \subsection{Runnability}
-\label{sec:orga6d16c4}
+\label{sec:org11ca52e}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
 We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
 
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:orgd270591}
+\label{sec:org2171482}
 
 Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
@@ -155,7 +155,7 @@ Therefore, we outline that the main limit for the \(V_Q\) is the \(\epsilon_{eff
 \end{minipage}%
 
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:org87e7829}
+\label{sec:orge5929a7}
 
 As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\), although we will later adapt it.
 
@@ -277,12 +277,12 @@ affecting equally and exponentially to the metric.
 \end{minipage}%
 
 \subsubsection{Runnability}
-\label{sec:orga4b1848}
+\label{sec:org753173a}
 
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
 
-$$\text{Runnable if: } V_Q > V^a_Q$$
+$$\text{Runnable if: } V_Q > V^a_Q \quad \quad \text{ when } N \ge n$$
 
 For instance, in order to understand this concept, one may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
@@ -292,10 +292,53 @@ But, as soon as the general behaviour of the final and the initial \(V^a_Q\) is 
 
 Therefore, we define runnability as the condition of:
 
-$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d$$
+$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d \quad \quad \text{ when } N \ge n$$
 
 \section{Methodology}
-\label{sec:orgae8d2fe}
+\label{sec:orgaf0dee1}
+
+After explaning the insights and our new concepts around the metric of Quantum Volume, let us now
+look at our methodology.
+One issue that needs to be raised is the difficulty of \(\epsilon_{eff}\) calculation for a device.
+In our work, we will try to avoid this exhausting process outlining how much computational power
+is required by a given algorithm.
+Or, in other words, we will calculate the \(V^a_Q\) and assert that it would be able to run in devices
+with \(V_Q > V^a_Q\) and, obviously, \(N > n\).
+\(V^a_Q\) will be a threshold to define the runnability of a given algorithm.
+
+As mentioned at the beginning, we are also interested on the impact of the mapping step in the
+Quantum Volume.
+Because of that, we will check the differences of \(V^a_Q\) in the same circuit, before and after
+mapping it.
+We are interested in checking the relation between Quantum Volume and the probability of success, as
+well.
+We will analyze the results of both metrics, thus.
+
+Subsequently, the design of our Quantum Volume method will follow the next stages.
+First, given a quantum algorithm, we will calculate the Quantum Volume of a circuit, before and after mapping.
+Then, we will compare both results and we will investigate their relationship with the probability
+of success, if any.
+Finally, we will outline the runnability threshold of the algorithm.
+
+\begin{table}[htbp]
+\caption{\label{tab:org5e44bdb}
+Summary of the steps to outline the range of possible values for running a given algorithm}
+\centering
+\small
+\begin{tabular}{|l|}
+\hline
+\\
+Steps:\\
+\\
+1. Calculation of \(V^a_Q\) for a given algorithm without mapping\\
+2. Calculation of \(V^a_Q'\) for a given algorithm after being mapped with the constraints of some device\\
+3. Compare \(V^a_Q'\) and \(V^a_Q\)\\
+4. Look for relation with probability of success\\
+5. Threshold \(V_Q\) with \(V^a_Q\) (\(V_Q > V^a_Q\) and \(N \ge n\))\\
+\\
+\hline
+\end{tabular}
+\end{table}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}

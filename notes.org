@@ -1,4 +1,4 @@
-#+TITLE: Quantum Volume
+#+TITLE: Quantum Volume Report
 #+AUTHOR: Daniel Moreno Manzano
 
 #+LATEX_HEADER: \usepackage{geometry}
@@ -310,7 +310,7 @@ It could be the case that one quantum circuit using more qubits than the ones av
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the $V_Q$ should be bigger than $V^a_Q$.
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
 
-$$\text{Runnable if: } V_Q > V^a_Q$$
+$$\text{Runnable if: } V_Q > V^a_Q \quad \quad \text{ when } N \ge n$$
 
 For instance, in order to understand this concept, one may imagine the process of checking, whether or not, some cube with a given volume -- representing the algorithm -- would fit in a box -- the device --.
 If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
@@ -320,7 +320,7 @@ But, as soon as the general behaviour of the final and the initial $V^a_Q$ is th
 
 Therefore, we define runnability as the condition of:
 
-$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d$$
+$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d \quad \quad \text{ when } N \ge n$$
 
 *** Depict $\epsilon_{eff}(n)$                                   :noexport:
 
@@ -352,8 +352,49 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 # # Intro of how we want to work with Quantum Volume.
 # First we will calculate the Quantum Volume of a circuit (before and after mapping. We will be able to see differences because out metric is not following the Quantum Volume $min$ convention)
+
 # +Then, without calculating any effective error rate, we will consider that the Quantum Volume of the device should be smaller than the Quantum Volume of the device.+
-# +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or effective error rate required to run a certain algorithm.+
+# +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or
+# effective error rate required to run a certain algorithm.+
+
+After explaning the insights and our new concepts around the metric of Quantum Volume, let us now
+look at our methodology.
+One issue that needs to be raised is the difficulty of $\epsilon_{eff}$ calculation for a device.
+In our work, we will try to avoid this exhausting process outlining how much computational power
+is required by a given algorithm.
+Or, in other words, we will calculate the $V^a_Q$ and assert that it would be able to run in devices
+with $V_Q > V^a_Q$ and, obviously, $N > n$.
+$V^a_Q$ will be a threshold to define the runnability of a given algorithm.
+
+As mentioned at the beginning, we are also interested on the impact of the mapping step in the
+Quantum Volume.
+Because of that, we will check the differences of $V^a_Q$ in the same circuit, before and after
+mapping it.
+We are interested in checking the relation between Quantum Volume and the probability of success, as
+well.
+We will analyze the results of both metrics, thus.
+
+# After the prerequisite have been acknowledged, 
+Subsequently, the design of our Quantum Volume method will follow the next stages.
+First, given a quantum algorithm, we will calculate the Quantum Volume of a circuit, before and after mapping.
+Then, we will compare both results and we will investigate their relationship with the probability
+of success, if any.
+Finally, we will outline the runnability threshold of the algorithm.
+
+#+caption: Summary of the steps to outline the range of possible values for running a given algorithm
+#+NAME: tab:methodsteps
+#+ATTR_LATEX: :booktabs :environment :font \small :width \textwidth :float t :align |l|
+|---------------------------------------------------------------------------------------------------------|
+|                                                                                                         |
+| Steps:                                                                                                  |
+|                                                                                                         |
+| 1. Calculation of $V^a_Q$ for a given algorithm without mapping                                         |
+| 2. Calculation of $V^a_Q'$ for a given algorithm after being mapped with the constraints of some device |
+| 3. Compare $V^a_Q'$ and $V^a_Q$                                                                         |
+| 4. Look for relation with probability of success                                                        |
+| 5. Threshold $V_Q$ with $V^a_Q$ ($V_Q > V^a_Q$ and $N \ge n$)                                           |
+|                                                                                                         |
+|---------------------------------------------------------------------------------------------------------|
 
 * Thoughts                                                         :noexport:
 
