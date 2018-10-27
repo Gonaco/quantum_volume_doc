@@ -263,9 +263,9 @@ Considering that most of our work is not going to be in any of these extreme cas
 
 $$V_Q^a =  n \times d$$
 
-Fig. \ref{algorithmmultQV2} and Fig. \ref{algorithmmultQV1} report the behaviour of the $V_Q^a$ as
+Fig. \ref{fig:algorithmmultQV2} and Fig. \ref{fig:algorithmmultQV1} report the behaviour of the $V_Q^a$ as
 the multiplication of $n$ and $d$.
-As illutrated in Fig. \ref{algorithmQV2sym} and \ref{algorithmQV1sym}, the values of $n$ and $d$ are
+As illutrated in Fig. \ref{fig:algorithmQV2sym} and \ref{fig:algorithmQV1sym}, the values of $n$ and $d$ are
 affecting equally and exponentially to the metric.
 
 #+BEGIN_EXPORT latex
