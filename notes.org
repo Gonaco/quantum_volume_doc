@@ -161,8 +161,48 @@ $$V_Q^a = \min \left[ n,d \right]^2$$
 
 Note that $d$ is not $d(N)$ but the real depth of the given algorithm.
 At the same time, $n$ is the number of qubits required by the algorithm itself.
-One can see how $d$ and $n$ are equally important in Fig. \ref{fig:algorithmQV2} and Fig. \ref{fig:algorithmQV1}.
+One can see how $d$ and $n$ are equally important in Fig. \ref{fig:algorithmQV2sym} and Fig. \ref{fig:algorithmQV1sym}.
 The growth of both variables causes an equally exponential growth of $V^a_Q$.
+
+#+BEGIN_EXPORT latex
+     %\begin{figure}
+     
+     %\centering
+     \begin{minipage}{.45\textwidth}
+
+     \centering
+
+#+END_EXPORT
+
+# [[file:V_q_analysis2.png]] 
+
+file:V_q_analysis_sym2.png
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV2sym}
+
+     \end{minipage}%
+     \hspace{1cm}
+     \begin{minipage}{.45\textwidth}
+
+#+END_EXPORT
+
+# [[file:V_q_analysis1.png]] 
+
+[[file:V_q_analysis_sym1.png]]
+
+#+BEGIN_EXPORT latex
+     \captionof{figure}{}
+     \label{fig:algorithmQV1sym}
+
+     \end{minipage}%
+#+END_EXPORT
+
+Fig. \ref{fig:algorithmQV2asym} and Fig. \ref{fig:algorithmQV1asym} present the behaviour of $V_Q^a$
+focusing in the current most common values for $n$ and $d$.
+The function shows an asymteric beheviour due to $d$ is much bigger than $n$ most of the times.
+
 
 #+BEGIN_EXPORT latex
      %\begin{figure}
@@ -199,40 +239,6 @@ file:V_q_analysis_asym2.png
      \end{minipage}%
 #+END_EXPORT
 
-#+BEGIN_EXPORT latex
-     %\begin{figure}
-     
-     %\centering
-     \begin{minipage}{.45\textwidth}
-
-     \centering
-
-#+END_EXPORT
-
-# [[file:V_q_analysis2.png]] 
-
-file:V_q_analysis_sym2.png
-
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV2}
-
-     \end{minipage}%
-     \hspace{1cm}
-     \begin{minipage}{.45\textwidth}
-
-#+END_EXPORT
-
-# [[file:V_q_analysis1.png]] 
-
-[[file:V_q_analysis_sym1.png]]
-
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV1}
-
-     \end{minipage}%
-#+END_EXPORT
 
 We aware that this approach has a limitation regarding the mapping of the quantum circuit.
 As explained before, $V_Q$ is able to take into account the sophistication of the mapping procedure.
@@ -305,7 +311,7 @@ For instance, in order to understand this concept, one may imagine the process o
 If the "algorithm's box" volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
 
 Indeed, one acceptable criticism of this definition is that, as $V_Q$ and $V^a_Q$ are finally defined in the previous sections, it seems that it is not really fair to compare them.
-But, as soon as the general behaviour of the final and the initial $V^a_Q$ is the same -- one can see in the Fig. \ref{fig:algorithmQV1} and Fig. \ref{fig:algorithmmultQV1} -- and that the final definition tends to be bigger than the initial one -- so it is defining a more restrictive and exigent scenario -- we believe that this definition of runnability mathematically correct and useful.
+But, as soon as the general behaviour of the final and the initial $V^a_Q$ is the same -- one can see in the Fig. \ref{fig:algorithmQV1sym} and Fig. \ref{fig:algorithmmultQV1} -- and that the final definition tends to be bigger than the initial one -- so it is defining a more restrictive and exigent scenario -- we believe that this definition of runnability mathematically correct and useful.
 
 Therefore, we define runnability as the condition of:
 
