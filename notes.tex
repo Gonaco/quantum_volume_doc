@@ -1,4 +1,4 @@
-% Created 2018-10-27 Sat 19:34
+% Created 2018-10-27 Sat 19:49
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -36,7 +36,7 @@
 \maketitle
 
 \section{Introduction}
-\label{sec:orgeee1eb6}
+\label{sec:org56fd474}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -48,18 +48,18 @@ While the device is the basis of the Quantum Volume metric, we fix our attention
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the probability of success.
 
 \section{Quantum Volume definition}
-\label{sec:orgf71e85a}
+\label{sec:org737dd47}
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \subsection{Literature review}
-\label{sec:orgf684356}
+\label{sec:org18f5d1d}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}.
 In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 \subsubsection{Hardware parameters}
-\label{sec:orgf97d927}
+\label{sec:org580f5ca}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -72,7 +72,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \subsubsection{Definitions and metrics}
-\label{sec:orgdd47925}
+\label{sec:orgcdbf3d4}
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
@@ -85,7 +85,7 @@ In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_20
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{model_algorithm.png}
-\caption{\label{fig:org7e27eec}
+\caption{\label{fig:orga9e02ac}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
@@ -106,14 +106,14 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \end{description}
 
 \subsection{Runnability}
-\label{sec:orgfdc34dc}
+\label{sec:orgd67e330}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that the new metric offers. 
 We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
 
 
 \subsubsection{Quantum Volume of a device}
-\label{sec:org848c2ba}
+\label{sec:org483bfb7}
 
 Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
@@ -155,7 +155,7 @@ Therefore, we outline that the main limit for the \(V_Q\) is the \(\epsilon_{eff
 \end{minipage}%
 
 \subsubsection{Quantum Volume of an algorithm}
-\label{sec:orgbcd85a7}
+\label{sec:orga266bdf}
 
 As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\), although we will later adapt it.
 
@@ -237,12 +237,17 @@ In the current NISQ era, the quantum circuits need much less qubits than depth.
 Therefore, most of the times, the minimum value between \(n\) and \(d\) will be \(n\).
 As soon as \(V^a_Q\) is taking into account the minimum of them and the mapping procedure affects mostly to \(d\) we can conclude that this definition of \(V^a_Q\) is not considering the mapping in its results.
 
-A simplified solution for this problem would be the \(V^a_Q\) definition as the multiplication of \(n\) and \(d\).
+A simplified solution for this problem would be the \(V^a_Q\) definition as the multiplication between \(n\) and \(d\).
 Unfortunately, this approach has several drawbacks as well.
 As Moll et al. point out \cite{Moll_2018}, extreme cases of high \(n\) and low \(d\) -- or the other way around -- lead to inconsistencies of the multiplication metric.
-Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we consider the definition of the algorithm's Quantum Volume as:
+Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we define the algorithm's Quantum Volume as:
 
 $$V_Q^a =  n \times d$$
+
+Fig. \ref{algorithmmultQV2} and Fig. \ref{algorithmmultQV1} report the behaviour of the \(V_Q^a\) as
+the multiplication of \(n\) and \(d\).
+As illutrated in Fig. \ref{algorithmQV2sym} and \ref{algorithmQV1sym}, the values of \(n\) and \(d\) are
+affecting equally and exponentially to the metric.
 
 %\begin{figure}
 
@@ -272,7 +277,7 @@ $$V_Q^a =  n \times d$$
 \end{minipage}%
 
 \subsubsection{Runnability}
-\label{sec:org5acc633}
+\label{sec:org5d53fd3}
 
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
@@ -290,7 +295,7 @@ Therefore, we define runnability as the condition of:
 $$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d$$
 
 \section{Methodology}
-\label{sec:orgba571b7}
+\label{sec:org3bee654}
 
 \bibliography{../thesis_plan}
 \bibliographystyle{plain}

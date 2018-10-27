@@ -251,10 +251,10 @@ In the current NISQ era, the quantum circuits need much less qubits than depth.
 Therefore, most of the times, the minimum value between $n$ and $d$ will be $n$.
 As soon as $V^a_Q$ is taking into account the minimum of them and the mapping procedure affects mostly to $d$ we can conclude that this definition of $V^a_Q$ is not considering the mapping in its results.
 
-A simplified solution for this problem would be the $V^a_Q$ definition as the multiplication of $n$ and $d$.
+A simplified solution for this problem would be the $V^a_Q$ definition as the multiplication between $n$ and $d$.
 Unfortunately, this approach has several drawbacks as well.
 As Moll et al. point out cite:Moll_2018, extreme cases of high $n$ and low $d$ -- or the other way around -- lead to inconsistencies of the multiplication metric.
-Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we consider the definition of the algorithm's Quantum Volume as:
+Considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we define the algorithm's Quantum Volume as:
 
 # It will result in higher values for devices that actually are not working that good in comparison with others that have real higher computational power.
 # For instance, ...
@@ -262,6 +262,11 @@ Considering that most of our work is not going to be in any of these extreme cas
 # And, at the same time, this systems are not relevant in computational power, although are able to run long circuits.
 
 $$V_Q^a =  n \times d$$
+
+Fig. \ref{algorithmmultQV2} and Fig. \ref{algorithmmultQV1} report the behaviour of the $V_Q^a$ as
+the multiplication of $n$ and $d$.
+As illutrated in Fig. \ref{algorithmQV2sym} and \ref{algorithmQV1sym}, the values of $n$ and $d$ are
+affecting equally and exponentially to the metric.
 
 #+BEGIN_EXPORT latex
      %\begin{figure}
