@@ -357,7 +357,7 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 # +Knowing that minimum Quantum Volume for the device we can depict the minimum number of qubits or
 # effective error rate required to run a certain algorithm.+
 
-After explaning the insights and our new concepts around the metric of Quantum Volume, let us now
+After explaining the insights and our new concepts around the metric of Quantum Volume, let us now
 look at our methodology.
 One issue that needs to be raised is the difficulty of $\epsilon_{eff}$ calculation for a device.
 In our work, we will try to avoid this exhausting process outlining how much computational power
@@ -388,9 +388,9 @@ Finally, we will outline the runnability threshold of the algorithm.
 |                                                                                                         |
 | Steps:                                                                                                  |
 |                                                                                                         |
-| 1. Calculation of $V^a_Q$ for a given algorithm without mapping                                         |
-| 2. Calculation of $V^a_Q'$ for a given algorithm after being mapped with the constraints of some device |
-| 3. Compare $V^a_Q'$ and $V^a_Q$                                                                         |
+| 1. Calculation of $V^a_Q \prime$ for a given algorithm without mapping                                  |
+| 2. Calculation of $V^a_Q$ for a given algorithm after being mapped with the constraints of some device   |
+| 3. Compare $V^a_Q \prime$ and $V^a_Q$                                                                   |
 | 4. Look for relation with probability of success                                                        |
 | 5. Threshold $V_Q$ with $V^a_Q$ ($V_Q > V^a_Q$ and $N \ge n$)                                           |
 |                                                                                                         |
