@@ -458,5 +458,6 @@ $$N = \sqrt{\frac{1}{\epsilon_{eff}}} = 31.623$$
 
 * BIB                                                                :ignore:
 
-bibliography:../thesis_plan.bib
+# bibliography:../thesis_plan.bib
+bibliography:thesis_plan.bib
 bibliographystyle:plain
